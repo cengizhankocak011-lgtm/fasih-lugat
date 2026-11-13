@@ -1,0 +1,30 @@
+workflows:
+  ios-workflow:
+    name: Fasih Lugat iOS
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+
+    environment:
+      node: 22
+      xcode: latest
+
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm ci
+
+      - name: Build web application
+        script: |
+          npm run build
+
+      - name: Sync Capacitor iOS
+        script: |
+          npx cap sync ios
+
+      - name: Resolve iOS packages
+        script: |
+          cd ios/App
+          xcodebuild -resolvePackageDependencies -project App.xcodeproj -scheme App
+
+    artifacts:
+      - ios/App/build/outputs/**/*
