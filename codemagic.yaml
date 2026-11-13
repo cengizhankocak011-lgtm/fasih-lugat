@@ -1,3 +1,4 @@
+
 workflows:
   ios-workflow:
     name: Fasih Lugat iOS
@@ -26,10 +27,10 @@ workflows:
         script: |
           npx cap sync ios
 
-      - name: Install iOS dependencies
+      - name: Resolve iOS packages
         script: |
           cd ios/App
-          pod install
+          xcodebuild -resolvePackageDependencies -project App.xcodeproj -scheme App
 
       - name: Set up iOS code signing
         script: |
@@ -38,9 +39,9 @@ workflows:
       - name: Build signed IPA
         script: |
           xcode-project build-ipa \
-            --workspace "$CM_BUILD_DIR/ios/App/App.xcworkspace" \
+            --project "$CM_BUILD_DIR/ios/App/App.xcodeproj" \
             --scheme "App"
 
     artifacts:
-      - ios/App/build/ios/ipa/*.ipa
+      - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
