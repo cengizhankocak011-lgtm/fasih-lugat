@@ -41,12 +41,16 @@ workflows:
         script: |
           xcode-project use-profiles --project ios/App/App.xcodeproj
 
+      - name: Set iOS build number
+        script: |
+          cd ios/App
+          agvtool new-version -all 2
+
       - name: Build signed IPA
         script: |
           xcode-project build-ipa \
             --project "$CM_BUILD_DIR/ios/App/App.xcodeproj" \
             --scheme "App"
-
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
