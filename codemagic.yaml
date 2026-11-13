@@ -7,6 +7,11 @@ workflows:
     environment:
       node: 22
       xcode: latest
+      ios_signing:
+        provisioning_profiles:
+          - FasihLugat-AppStore
+        certificates:
+          - FasihLugat-Distribution
 
     scripts:
       - name: Install dependencies
@@ -21,10 +26,21 @@ workflows:
         script: |
           npx cap sync ios
 
-      - name: Resolve iOS packages
+      - name: Install iOS dependencies
         script: |
           cd ios/App
-          xcodebuild -resolvePackageDependencies -project App.xcodeproj -scheme App
+          pod install
+
+      - name: Set up iOS code signing
+        script: |
+          xcode-project use-profiles --project ios/App/App.xcodeproj
+
+      - name: Build signed IPA
+        script: |
+          xcode-project build-ipa \
+            --workspace "$CM_BUILD_DIR/ios/App/App.xcworkspace" \
+            --scheme "App"
 
     artifacts:
-      - ios/App/build/outputs/**/*
+      - ios/App/build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
