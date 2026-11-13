@@ -1,0 +1,25 @@
+{
+  "projectId": "72833748",
+  "functions": {
+    "gemini": {
+      "hasChanged": false,
+      "hash": "d2cd73b3571775e5fc0cc1b222ae8edbcdf838bb0b98ab37487cc419a8444420"
+    },
+    "generate-word": {
+      "hasChanged": false,
+      "hash": "6bf9676771e075aa13dad70ba476353c54ca204b633b567f3e8775672bed7e06"
+    },
+    "send-feedback": {
+      "hasChanged": false,
+      "hash": "13cd039732a5a13bff5a6fb329c4d30ef937ba6a3d967931cb664e13924367cd"
+    },
+    "speech": {
+      "hasChanged": false,
+      "hash": "5ab101b0c0564f5badfb36c5bca057b7cda717f298e3edf5cb48574653661188"
+    },
+    "word-details": {
+      "hasChanged": false,
+      "hash": "7d6f1ac7b83e06600d543a7c9bfbb78f2aea11d0e38c69be39bf05a8a5a87091"
+    }
+  }
+}

@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream-50 text-ink-900 antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    overscroll-behavior-y: none;
+  }
+
+  .dark body {
+    @apply bg-ink-950 text-ink-50;
+  }
+
+  /* Arabic text defaults */
+  .ar {
+    font-family: 'Noto Naskh Arabic', Amiri, serif;
+    direction: rtl;
+    unicode-bidi: embed;
+    line-height: 1.9;
+  }
+
+  .ar-amiri {
+    font-family: Amiri, 'Noto Naskh Arabic', serif;
+    direction: rtl;
+    unicode-bidi: embed;
+  }
+
+  .ar-quran {
+    font-family: 'Scheherazade New', Amiri, serif;
+    direction: rtl;
+    unicode-bidi: embed;
+    line-height: 2.1;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-emerald-300/50 rounded-full;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-emerald-800/60;
+  }
+
+  ::selection {
+    @apply bg-gold-300/60 text-ink-900;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white dark:bg-ink-900 rounded-2xl shadow-card border border-emerald-100/70 dark:border-ink-800;
+  }
+
+  .card-elevated {
+    @apply bg-white dark:bg-ink-900 rounded-2xl shadow-card-lg border border-emerald-100/70 dark:border-ink-800;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:pointer-events-none select-none;
+  }
+
+  .btn-primary {
+    @apply btn bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm hover:shadow-md;
+  }
+
+  .btn-gold {
+    @apply btn bg-gold-400 hover:bg-gold-500 text-ink-900 shadow-sm hover:shadow-md font-semibold;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent hover:bg-emerald-50 dark:hover:bg-ink-800 text-ink-700 dark:text-ink-200;
+  }
+
+  .btn-outline {
+    @apply btn bg-white dark:bg-ink-900 border border-emerald-200 dark:border-ink-700 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-ink-800;
+  }
+
+  .input-field {
+    @apply w-full bg-white dark:bg-ink-900 border border-emerald-200 dark:border-ink-700 rounded-xl px-4 py-3 text-ink-900 dark:text-ink-50 placeholder-ink-400 dark:placeholder-ink-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium;
+  }
+
+  .chip-emerald {
+    @apply chip bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300;
+  }
+
+  .chip-gold {
+    @apply chip bg-gold-100 text-gold-700 dark:bg-gold-900/40 dark:text-gold-300;
+  }
+
+  .chip-ink {
+    @apply chip bg-ink-100 text-ink-600 dark:bg-ink-800 dark:text-ink-300;
+  }
+
+  .section-title {
+    @apply text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400;
+  }
+
+  .shimmer-bg {
+    background: linear-gradient(90deg, rgba(16,185,129,0.05) 25%, rgba(16,185,129,0.12) 50%, rgba(16,185,129,0.05) 75%);
+    background-size: 1000px 100%;
+    @apply animate-shimmer;
+  }
+}
+
+@layer utilities {
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .pb-nav {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .tap-highlight-none {
+    -webkit-tap-highlight-color: transparent;
+  }
+}

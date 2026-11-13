@@ -1,0 +1,14 @@
+[functions.gemini]
+verify_jwt = true
+
+[functions.word-details]
+verify_jwt = true
+
+[functions.speech]
+verify_jwt = true
+
+[functions.generate-word]
+verify_jwt = true
+
+[functions.send-feedback]
+verify_jwt = true
